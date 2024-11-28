@@ -1,5 +1,6 @@
 package com.inventory.service.service;
 
+import com.inventory.service.entity.Inventory;
 import com.inventory.service.repository.InventoryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,5 +18,9 @@ public class InventoryService {
         boolean isInStock = inventoryRepository.existsBySkuCodeAndQuantityIsGreaterThanEqual(skuCode, quantity);
         log.info(" End -- Product with skuCode {}, and quantity {}, is in stock - {}", skuCode, quantity, isInStock);
         return isInStock;
+    }
+
+    public Inventory addStock(Inventory inventory){
+        return inventoryRepository.save(inventory);
     }
 }
